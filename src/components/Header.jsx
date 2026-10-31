@@ -1,6 +1,7 @@
 import chefIcon from "../image/chef-claude-icon.png"
 
 export default function Header(){
+
     
     return(
         <header className="bg-yellow-100 flex justify-center items-center h-34">
