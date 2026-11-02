@@ -3,9 +3,8 @@ import {useState} from "react"
  
 
 export default function Main(){
-
-    const ingredients = ["Chicken", "Oregano", "Tomatoes"]
-  
+ 
+    const[ingredients, setIngredients] = useState(["Chicken", "Oregano", "Tomatoes"])
 
     const ingredientsListItems = ingredients.map((ingredient) => {
         return(
@@ -19,10 +18,7 @@ export default function Main(){
         const formData = new FormData(event.currentTarget)
         const newIngredient = formData.get("ingredient")
         
-        ingredients.push(newIngredient)
-
-
-        console.log(ingredients)
+        setIngredients(prev => [newIngredient,...prev]) 
     }
    
 
@@ -40,6 +36,7 @@ export default function Main(){
 
                 <button
                     className="bg-[#141413] text-[#fafaf8] rounded-md w-[200px] font-stretch-150%"  
+                     
                 >
                     + Add ingredient
                 </button>
