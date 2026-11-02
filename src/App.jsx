@@ -1,36 +1,40 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import { useState } from 'react' 
 import Header from './components/Header'
 import Main from './components/Main'
 
 function App() { 
   
- const [count, setCount] = useState(4)
+  const [myFavoriteThings, setMyFavoriteThings] = useState([])
 
- function countDecrease(){
-    setCount(prevCount => prevCount - 1)
- }
 
- function countIncrease(){
-    setCount(prevCount => prevCount + 1)
- }
+  const allFavoriteThings = ["💦🌹", "😺", "💡🫖", "🔥🧤", "🟤🎁", 
+  "🐴", "🍎🥧", "🚪🔔", "🛷🔔", "🥩🍝"]
+
+
+
+  const thingsElements = myFavoriteThings.map(thidtrhng => <h1 key={thidtrhng}>{thidtrhng}</h1>)
+ 
+
+
+
+
+
+  function addFavoriteThing() { 
+    setMyFavoriteThings(prev => [
+      ...prev, 
+      allFavoriteThings[prev.length]]
+    )
+  }
+
+
 
   return (
-    <>  
-      <Header />
-      <Main />
-
-      <main className="container">
-            <h1>How many times will Bob say "state" in this section?</h1>
-            <div className="counter">
-                <button onClick={countDecrease} className="minus" aria-label="Decrease count">–</button>
-                <h2 className="count">{count}</h2>
-                <button onClick={countIncrease} className="plus" aria-label="Increase count">+</button>
-            </div>
-        </main>
-    </>
+    <main>
+      <button onClick={addFavoriteThing}>Add item srt</button>
+      <section key={thingsElements} aria-live="polite">
+        {thingsElements}
+      </section>
+    </main>
   )
 }
 
