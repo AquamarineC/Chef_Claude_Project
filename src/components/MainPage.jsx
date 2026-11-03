@@ -12,26 +12,22 @@ export default function Main(){
     )
     })
     
-    function handleSubmit(event){
-        event.preventDefault()
-        
-        const formData = new FormData(event.currentTarget)
-        const newIngredient = formData.get("ingredient")
-        
-        setIngredients(prev => [newIngredient,...prev]) 
+    function formAction(formData){ 
+        const newIngredients = formData.get("ggggdfaeth")
+        setIngredients(prev => [...prev, newIngredients]) 
     }
    
 
 
     return (
         <main className="py-[30px] px-[30px] ">
-            <form  onSubmit={handleSubmit} className="add-ingredient-form flex justify-center gap-[12px] item-center h-[38px]">
+            <form  action={formAction} className="add-ingredient-form flex justify-center gap-[12px] item-center h-[38px]">
                 <input 
                     className="rounded-md border-1 px-[9px] py-[13px] border-[#d1d5db] flex-1 min-w-[150px] max-w-[400px]"
                     aria-label="Add ingredient" 
                     placeholder="e.g. oregano" 
                     type="text"
-                    name="ingredient"
+                    name="ggggdfaeth"
                 />
 
                 <button
