@@ -4,7 +4,7 @@ import {useState} from "react"
 
 export default function Main(){
  
-    const[ingredients, setIngredients] = useState(["Chicken", "Oregano", "Tomatoes"])
+    const[ingredients, setIngredients] = useState([])
 
     const ingredientsListItems = ingredients.map((ingredient) => {
         return(
@@ -34,16 +34,25 @@ export default function Main(){
                     className="bg-[#141413] text-[#fafaf8] rounded-md w-[200px] font-stretch-150%"  
                      
                 >
-                    + Add ingredient
+                     Add ingredient
                 </button>
                  
 
             </form>
             
-            <ul>
-                {ingredientsListItems}
-            </ul>
-
+            <section>
+                <h2>Ingredients on hand:</h2>
+                <ul className="ingredients-list" aria-live="polite">
+                    {ingredientsListItems}
+                </ul>
+                <div className="get-recipe-container">
+                    <div>
+                        <h3>Ready for a recipe?</h3>
+                        <p>Generate a recipe from your list of ingredients.</p>
+                    </div>
+                    <button>Get a recipe</button>
+                </div>
+            </section>
         </main>
     )
     

@@ -11,7 +11,7 @@ export default function Joke(props) {
     const [isShown, setIsShown] = useState(false)
 
     function handleClick(){
-        return setIsShown( prev =>  !isShown)
+        return setIsShown( prev =>  !prev)
     }
 
 
@@ -19,7 +19,7 @@ export default function Joke(props) {
         <div>
             {props.setup && <h3>{props.setup}</h3>}
             <p>{isShown && props.punchline}</p> 
-            <button onClick={handleClick} className=" bg-blue-200">Toggle Button</button>
+            <button onClick={handleClick} className=" bg-blue-200">{isShown? `hide punchline` : `Show punchline`}</button>
             <hr />
             
         </div>
