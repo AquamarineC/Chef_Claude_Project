@@ -31,6 +31,7 @@ export default function App() {
             isFavorite: !prevContact.isFavorite
         }))
     }
+ 
      
 
     return (
@@ -42,7 +43,7 @@ export default function App() {
                     alt="User profile picture of John Doe"
                 />
                 <div className="info">
-                    <Star isFilled={contact.isFavorite}/>
+                    <Star isFilled={contact.isFavorite} handleClick={toggleFavorite}/>
                     <h2 className="name">
                         {contact.firstName} {contact.lastName}
                     </h2>
