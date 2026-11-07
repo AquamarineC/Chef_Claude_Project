@@ -6,52 +6,55 @@ import Joke from "./components/Joke"
 import jokesData from "./components/jokesData"
 import avatar from "./image/user.png"
 import Star from "./components/Star"
+import Body from "./components/Body"
 
 import Count from "./components/Count"
 
+import hahahahpads from "./pads"
+import Pad from "./components/Pad"
 
 
 
 
+export default function App(props) {
 
-export default function App() {
-    const [contact, setContact] = useState({
-        firstName: "John",
-        lastName: "Doe",
-        phone: "+1 (212) 555-1212",
-        email: "itsmyrealname@example.com",
-        isFavorite: false
-    })
-    
-    // let starIcon = contact.isFavorite ? starFilled : starEmpty
+    const[padsState, setPadsState] = useState(hahahahpads)
 
-    function toggleFavorite() {
-        setContact(prevContact => ({
-            ...prevContact,
-            isFavorite: !prevContact.isFavorite
-        }))
+    function toggle(id){
+         setPadsState(prev => prev.map(item => {
+                return(
+                    item.id === id ? {...item, on:!item.on} : item
+                )
+
+            })
+          ) 
+        console.log(id)
+        console.log(padsState)    
     }
+
+
+    const soundPadsButtons = padsState.map((soundPadsButton) => {        
+
+        return (
+            <Pad 
+                id={soundPadsButton.id}
+                key={soundPadsButton.id} 
+                color={soundPadsButton.color}  
+                onClassName={soundPadsButton.on}
+                toggle={toggle}
+            />
+        ) 
+    })
+
  
-     
-
     return (
-        <main>
-            <article className="card">
-                <img
-                    src={avatar}
-                    className="avatar"
-                    alt="User profile picture of John Doe"
-                />
-                <div className="info">
-                    <Star isFilled={contact.isFavorite} handleClick={toggleFavorite}/>
-                    <h2 className="name">
-                        {contact.firstName} {contact.lastName}
-                    </h2>
-                    <p className="contact">{contact.phone}</p>
-                    <p className="contact">{contact.email}</p>
-                </div>
-
-            </article>
-        </main>
+        <div style={props.darkMode ? {backgroundColor: "#222222"} : {backgroundColor: "#cccccc"}}>
+        
+        <main >
+            <div className="pad-container">
+                {soundPadsButtons}
+            </div>
+        </main> 
+        </div> 
     )
 }

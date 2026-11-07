@@ -2,23 +2,52 @@ import { useState } from "react"
 
 export default function Text(){
 
-    const[messages, setMessages] = useState([1,2,3,4,5,6])
+    const[car, setCar] = useState([{
+        id: 1,
+        color: "#F18D8B",
+        on: true
+    },   
+    {
+        id: 2,
+        color: "#F5C280",
+        on: false
+    },   
+    {
+        id: 3,
+        color: "#EEEC79",
+        on: true
+    },   
+    {
+        id: 4,
+        color: "#64ED98",
+        on: true
+    },   
+    {
+        id: 5,
+        color: "#63DEED",
+        on: false
+    },   
+    {
+        id: 6,
+        color: "#877FED",
+        on: false
+    },   
+    {
+        id: 7,
+        color: "#A57FE9",
+        on: false
+    },   
+    {
+        id: 8,
+        color: "#F289C1",
+        on: true
+    },  ] )
 
-    let text
-    
-    if(messages.length==0){
-        text = "You are all caught up"
-    } else if (messages.length==1){
-        text = "You have 1 unread message"
-
-    }else{
-        text= `You have ${messages.length} unread messages`
-    }
-
+   
     return(
-        <div>
+        <div className="bg-amber-400">
 
-            {text}
+           <p>Favoriate button is:    {car[2].id}    {car[2].color} </p>
          </div>
     )
 }
