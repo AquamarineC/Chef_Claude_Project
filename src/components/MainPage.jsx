@@ -1,7 +1,7 @@
 import {useState} from "react"
 import ClaudeRecipe from "./ClaudeRecipe" 
 import IngredientsList from "./IngredientsList"
- 
+import { getRecipeFromMistral } from "../ai"
 
 export default function Main(){
  
@@ -14,14 +14,12 @@ export default function Main(){
 
 
     const [recipeShown, setRecipeShown] = useState(false);
-    
+
     function getRecipe(){
         setRecipeShown(prev => !prev)
     }
     
     
-
-
     return (
         <main className="py-[30px] px-[30px] ">
             <form  action={formAction} className="add-ingredient-form flex justify-center gap-[12px] item-center h-[38px]">
