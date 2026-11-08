@@ -18,43 +18,14 @@ import Pad from "./components/Pad"
 
 export default function App(props) {
 
-    const[padsState, setPadsState] = useState(hahahahpads)
-
-    function toggle(id){
-         setPadsState(prev => prev.map(item => {
-                return(
-                    item.id === id ? {...item, on:!item.on} : item
-                )
-
-            })
-          ) 
-        console.log(id)
-        console.log(padsState)    
-    }
-
-
-    const soundPadsButtons = padsState.map((soundPadsButton) => {        
-
-        return (
-            <Pad 
-                id={soundPadsButton.id}
-                key={soundPadsButton.id} 
-                color={soundPadsButton.color}  
-                onClassName={soundPadsButton.on}
-                toggle={toggle}
-            />
-        ) 
-    })
+   
+    
 
  
     return (
-        <div style={props.darkMode ? {backgroundColor: "#222222"} : {backgroundColor: "#cccccc"}}>
-        
-        <main >
-            <div className="pad-container">
-                {soundPadsButtons}
-            </div>
-        </main> 
-        </div> 
+        <>
+            <Header />
+            <MainPage />
+        </>
     )
 }
