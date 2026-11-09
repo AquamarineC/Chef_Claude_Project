@@ -1,9 +1,9 @@
 import {useState} from "react"
 import ClaudeRecipe from "./ClaudeRecipe" 
 import IngredientsList from "./IngredientsList"
-import { getRecipeFromMistral } from "../ai"
+import { getRecipeFromGroq } from "../ai"
 
-export default function Main(){
+export default function MainPage(){
  
     const[ingredients, setIngredients] = useState([])
 
@@ -12,13 +12,14 @@ export default function Main(){
         setIngredients(prev => [...prev, newIngredients]) 
     }
 
-
-    const [recipeShown, setRecipeShown] = useState(false);
-
-    function getRecipe(){
-        setRecipeShown(prev => !prev)
-    }
+    const [recipe, setRecipe] = useState("")
+ 
     
+    async function getRecipe(){
+       const generatedRecipeMarkdown = await getRecipeFromGroq(ingredients)  
+       setRecipe(generatedRecipeMarkdown)
+    }
+
     
     return (
         <main className="py-[30px] px-[30px] ">
@@ -41,9 +42,9 @@ export default function Main(){
 
             </form>
             
-            {ingredients.length!==0 && <IngredientsList toggle={getRecipe} ingredients={ingredients}/>}
+            {ingredients.length!==0 && <IngredientsList getRecipe={getRecipe} ingredients={ingredients}/>}
                 
-            {recipeShown && <ClaudeRecipe />}
+           {recipe && <ClaudeRecipe recipe={recipe}/>}
                 
            
            
