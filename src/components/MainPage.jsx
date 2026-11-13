@@ -1,4 +1,4 @@
-import {useState} from "react"
+import {useState, useRef, useEffect} from "react"
 import ClaudeRecipe from "./ClaudeRecipe" 
 import IngredientsList from "./IngredientsList"
 import { getRecipeFromGroq } from "../ai"
@@ -13,12 +13,22 @@ export default function MainPage(){
     }
 
     const [recipe, setRecipe] = useState("")
+    const recipeSection = useRef(null)
  
+
+    useEffect(() => {
+        (recipe === "" || recipeSection.current === null) ? "null" : recipeSection.current.scrollIntoView({behavior: "smooth"})
+        // return (cleanup code)
+    }, [recipe, recipeSection])
     
     async function getRecipe(){
        const generatedRecipeMarkdown = await getRecipeFromGroq(ingredients)  
        setRecipe(generatedRecipeMarkdown)
     }
+
+
+
+
 
     
     return (
@@ -33,6 +43,7 @@ export default function MainPage(){
                 />
 
                 <button
+                    
                     className="bg-[#141413] text-[#fafaf8] rounded-md w-[200px] font-stretch-150%"  
                      
                 >
@@ -42,7 +53,7 @@ export default function MainPage(){
 
             </form>
             
-            {ingredients.length!==0 && <IngredientsList getRecipe={getRecipe} ingredients={ingredients}/>}
+            {ingredients.length!==0 && <IngredientsList dsfghsrhrws={recipeSection} getRecipe={getRecipe} ingredients={ingredients}/>}
                 
            {recipe && <ClaudeRecipe recipe={recipe}/>}
                 
